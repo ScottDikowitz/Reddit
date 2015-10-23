@@ -8,13 +8,19 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render :show
+      log_in!(@user)
+      redirect_to user_url(@user.id)
     else
       flash[:error] = @user.errors.full_messages
-      redirect_to new_users_url
+      render :new
     end
   end
 
   def show
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    self.params.require(:user).permit(:username, :password)
   end
 end
