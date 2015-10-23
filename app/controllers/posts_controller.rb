@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.author_id = current_user.id
-    @post.sub_id = params[:sub_id]
     if @post.save
       render :show
     else

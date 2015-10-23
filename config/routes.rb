@@ -6,4 +6,6 @@ Reddit::Application.routes.draw do
   resources :subs, except: [:destroy] do
     resources :posts, except: [:index]
   end
+
+  resources :comments, only: [:new, :create]
 end

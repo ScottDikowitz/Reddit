@@ -6,5 +6,10 @@ class Post < ActiveRecord::Base
 
   has_many :post_subs, inverse_of: :post
   has_many :subs, through: :post_subs
+  has_many(
+    :comments,
+    class_name: "Comment",
+    foreign_key: :post_id
+  )
 
 end

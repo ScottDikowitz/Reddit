@@ -5,3 +5,5 @@
 <%= @post.content %>
 <br>
 CREATED BY <%= @post.author.username %>
+
+<%= render 'comments/form', post: @post %>
