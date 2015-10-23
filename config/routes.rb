@@ -3,5 +3,7 @@ Reddit::Application.routes.draw do
 
   resource :session, only: [:create,:new, :destroy]
 
-  resources :subs, except: [:destroy]
+  resources :subs, except: [:destroy] do
+    resources :posts, except: [:index]
+  end
 end

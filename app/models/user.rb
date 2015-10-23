@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
     foreign_key: :moderator_id
   )
 
+  has_many :posts, class_name: "Post", foreign_key: :author_id
+
+
   def ensure_session_token
     self.session_token ||= User.generate_session_token!
   end
