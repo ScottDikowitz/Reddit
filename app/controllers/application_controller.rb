@@ -23,4 +23,18 @@ class ApplicationController < ActionController::Base
     session[:session_token] = nil
   end
 
+  def is_logged_in
+    unless logged_in?
+      flash[:error] = ["Please sign in"]
+      redirect_to new_session_url
+    end
+  end
+
+  def is_moderator
+    @sub = Sub.find(params[:id])
+    unless current_user.id == @sub.moderator_id
+      redirect_to subs_url
+    end
+  end
+
 end

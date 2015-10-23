@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   end
   attr_reader :password
 
+  has_many(
+    :moderated_subs,
+    class_name: "Sub",
+    foreign_key: :moderator_id
+  )
+
   def ensure_session_token
     self.session_token ||= User.generate_session_token!
   end
