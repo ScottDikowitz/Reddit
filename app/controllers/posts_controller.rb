@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :is_author, only: [:edit, :update, :destroy]
+
   def show
     @post = Post.find(params[:id])
     render :show
@@ -42,6 +44,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :url, :content)
+    params.require(:post).permit(:title, :url, :contents, sub_ids: [])
   end
 end

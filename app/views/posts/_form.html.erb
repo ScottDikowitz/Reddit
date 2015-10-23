@@ -6,6 +6,13 @@
 <% end %>
 
 <%= auth_token %>
+
+<% Sub.all.each do |sub| %>
+  <label><%= sub.title %>
+
+    <input type='checkbox' name='post[sub_ids][]' value="<%= sub.id %>" <%=post.sub_ids.include?(sub.id) ? "checked" : "" %>>
+  </label>
+  <% end %>
 <label>Title
 <input type="text" name="post[title]" value="<%= post.title %>">
 </label>
